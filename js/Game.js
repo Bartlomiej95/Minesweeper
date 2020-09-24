@@ -1,5 +1,7 @@
 import { Cell } from "./Cell.js";
 import { UI } from "./UI.js";
+import { Counter } from "./Counter.js";
+import { Timer } from "./Timer.js";
 
 class Game extends UI {
   // # - konwencja, dodanie hasza sprawia, że metody są prywatne
@@ -22,6 +24,9 @@ class Game extends UI {
     },
   };
 
+  #counter = new Counter();
+  #timer = new Timer();
+
   #numberOfRows = null;
   #numberOfCols = null;
   #numberOfMines = null;
@@ -34,6 +39,8 @@ class Game extends UI {
 
   initializeGame() {
     this.#handleElements();
+    this.#counter.init();
+    this.#timer.init();
     this.#newGame();
   }
 
@@ -46,6 +53,9 @@ class Game extends UI {
     this.#numberOfRows = rows;
     this.#numberOfCols = cols;
     this.#numberOfMines = mines;
+
+    this.#counter.setValue(this.#numberOfMines);
+    this.#timer.startTimer();
 
     //zmieniamy wartość css cells-in-row tak aby plansza odpowiednio rozmieściła się na ekranie
     this.#setStyles();
@@ -105,7 +115,18 @@ class Game extends UI {
     const cell = this.#cells[rowIndex][colIndex];
 
     if (cell.isReveal) return;
-    cell.toggleFlag();
+
+    if (cell.isFlagged) {
+      this.#counter.increment();
+      cell.toggleFlag();
+      return;
+    }
+    //warunek uniemożliwiający dodanie więcej flag niż jest min
+    if (!!this.#counter.value) {
+      //! - zamiana np. 0 na false !!- zamiana 0 na false + negacja na true
+      this.#counter.decrement();
+      cell.toggleFlag();
+    }
   };
 
   #setStyles() {
