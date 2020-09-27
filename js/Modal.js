@@ -8,7 +8,6 @@ export class Modal extends UI {
   header = this.getElement(this.UISelectors.modalHeader);
 
   toggleModal = () => {
-    console.log(this);
     this.element.classList.toggle("hide");
   };
 

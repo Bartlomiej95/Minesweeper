@@ -12,7 +12,7 @@
   --info-seven-color: #000000;
   --info-eight-color: #808080;
 
-  --cell-size: 4rem;
+  --cell-size: 3.5rem;
   --game-padding: 1.5rem;
   --border-width: 0.3rem;
   --cells-in-row: 8;
@@ -67,7 +67,7 @@ html {
 .header__counter {
   background-color: #000;
   color: var(--alarm-color);
-  padding: 5rem;
+  padding: 3rem;
   font-family: "DIGITALDREAM", sans-serif;
   font-size: 3.2rem;
   min-width: 9rem;

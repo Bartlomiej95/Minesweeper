@@ -16,7 +16,11 @@ export class UI {
     inputRows: "[data-input-rows]",
     inputCols: "[data-input-cols]",
     inputMines: "[data-input-mines]",
+    labelRows: "[data-label-rows]",
+    labelCols: "[data-label-cols]",
+    labelMines: "[data-label-mines]",
     formButton: "[data-form-button]",
+    form: "[data-form]",
   };
 
   getElement(selector) {

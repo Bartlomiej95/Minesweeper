@@ -167,6 +167,19 @@ class Game extends UI {
       "click",
       this.#custome.toggleCustomeSettings
     );
+
+    this.#custome.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.#custome.validateForm();
+      if (this.#custome.isValidate) {
+        this.#custome.submitFormCustome(e);
+        this.#handleNewGameClick(
+          this.#custome.usersNumberOfRows,
+          this.#custome.usersNumberOfCols,
+          this.#custome.usersNumberOfMines
+        );
+      }
+    });
   }
 
   #removeCellsEventListeners() {
@@ -182,6 +195,7 @@ class Game extends UI {
     mines = this.#numberOfMines
   ) {
     this.#removeCellsEventListeners();
+    console.log(mines);
     this.#newGame(rows, cols, mines);
   }
 
@@ -214,7 +228,7 @@ class Game extends UI {
       const rowIndex = this.#getRandomInteger(0, this.#numberOfRows - 1);
       const colIndex = this.#getRandomInteger(0, this.#numberOfCols - 1);
 
-      const cell = this.#cells[colIndex][rowIndex];
+      const cell = this.#cells[rowIndex][colIndex];
 
       const hasCellMine = cell.isMine;
       if (!hasCellMine) {
@@ -224,6 +238,7 @@ class Game extends UI {
     }
   }
 
+  //obsługa kliklnięcia lewym przyciskiem myszy na jedno z pól do gry
   #handleCellClick = (e) => {
     console.log("Klik lewy");
     const target = e.target;
@@ -235,6 +250,7 @@ class Game extends UI {
     this.#clickCell(cell);
   };
 
+  // obsługa kliklnięcia prawym przyciskiem myszy na jedno z pól do gry
   #handleCellContextMenu = (e) => {
     e.preventDefault(); //zapobiegamy wyświetlaniu menu kontekstowego na prawym przycisku myszy
     const target = e.target;
