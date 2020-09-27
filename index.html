@@ -31,12 +31,29 @@
           <button class="button" data-button-easy>Easy</button>
           <button class="button" data-button-normal>Normal</button>
           <button class="button" data-button-expert>Expert</button>
+          <button class="button" data-button-custome>Custome</button>
         </section>
       </article>
       <article class="modal hide" data-modal>
         <section class="modal__content">
           <h2 class="modal__text" data-modal-header>You won!</h2>
           <button class="modal__button" data-modal-button>Play again!</button>
+        </section>
+      </article>
+      <article class="custome hide" data-custome>
+        <section class="custome__settings">
+          <form class="custome__form">
+            <h2 class="custome__text" data-custome-header>
+              Select your options
+            </h2>
+            <label for="rows"> Number of rows: </label>
+            <input type="number" name="rows" data-input-rows />
+            <label for="rows"> Number of cols: </label>
+            <input type="number" name="cols" data-input-cols />
+            <label for="rows"> Number of mines: </label>
+            <input type="number" name="mines" data-input-mines />
+            <button class="custome__button" data-form-button>Select</button>
+          </form>
         </section>
       </article>
     </main>

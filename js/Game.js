@@ -4,6 +4,7 @@ import { Counter } from "./Counter.js";
 import { Timer } from "./Timer.js";
 import { ResetButton } from "./ResetButton.js";
 import { Modal } from "./Modal.js";
+import { Custome } from "./Custome.js";
 
 class Game extends UI {
   // # - konwencja, dodanie hasza sprawia, że metody są prywatne
@@ -29,6 +30,7 @@ class Game extends UI {
   #counter = new Counter();
   #timer = new Timer();
   #modal = new Modal();
+  #custome = new Custome();
 
   #isGameFinished = false;
   #numberOfRows = null;
@@ -47,6 +49,7 @@ class Game extends UI {
     easy: null,
     normal: null,
     expert: null,
+    custome: null,
     reset: new ResetButton(),
   };
 
@@ -122,6 +125,7 @@ class Game extends UI {
     this.#buttons.easy = this.getElement(this.UISelectors.easyButton);
     this.#buttons.normal = this.getElement(this.UISelectors.normalButton);
     this.#buttons.expert = this.getElement(this.UISelectors.expertButton);
+    this.#buttons.custome = this.getElement(this.UISelectors.customeButton);
   }
 
   #addCellsEventListeners() {
@@ -159,6 +163,10 @@ class Game extends UI {
     this.#buttons.reset.element.addEventListener("click", () => {
       this.#handleNewGameClick();
     });
+    this.#buttons.custome.addEventListener(
+      "click",
+      this.#custome.toggleCustomeSettings
+    );
   }
 
   #removeCellsEventListeners() {
